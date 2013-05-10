@@ -1,0 +1,11 @@
+C:\Users\Idanturii\documents\visual studio 2012\Projects\StockManager\StockManager\bin\Debug\StockManager.dll
+C:\Users\Idanturii\documents\visual studio 2012\Projects\StockManager\StockManager\bin\Debug\StockManager.pdb
+C:\Users\Idanturii\documents\visual studio 2012\Projects\StockManager\StockManager\bin\Debug\MySql.Data.dll
+C:\Users\Idanturii\documents\visual studio 2012\Projects\StockManager\StockManager\obj\Debug\StockManager.csprojResolveAssemblyReference.cache
+C:\Users\Idanturii\documents\visual studio 2012\Projects\StockManager\StockManager\obj\Debug\StockManager.Properties.Resources.resources
+C:\Users\Idanturii\documents\visual studio 2012\Projects\StockManager\StockManager\obj\Debug\StockManager.csproj.GenerateResource.Cache
+C:\Users\Idanturii\documents\visual studio 2012\Projects\StockManager\StockManager\obj\Debug\StockManager.dll
+C:\Users\Idanturii\documents\visual studio 2012\Projects\StockManager\StockManager\obj\Debug\StockManager.pdb
+C:\Users\Idanturii\Documents\Visual Studio 2012\Projects\StockManager\StockManager\bin\Debug\StockManager.dll.config
+C:\Users\Idanturii\Documents\Visual Studio 2012\Projects\StockManager\StockManager\bin\Debug\EntityFramework.dll
+C:\Users\Idanturii\Documents\Visual Studio 2012\Projects\StockManager\StockManager\bin\Debug\EntityFramework.xml

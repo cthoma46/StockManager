@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="stocksModelStoreContainer" CdmEntityContainer="stocksEntities">
+    <EntitySetMapping Name="stockdatas">
+      <EntityTypeMapping TypeName="stocksModel.stockdata">
+        <MappingFragment StoreEntitySet="stockdata">
+          <ScalarProperty Name="stock_id" ColumnName="stock_id" />
+          <ScalarProperty Name="adjClose" ColumnName="adjClose" />
+          <ScalarProperty Name="close" ColumnName="close" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="high" ColumnName="high" />
+          <ScalarProperty Name="low" ColumnName="low" />
+          <ScalarProperty Name="open" ColumnName="open" />
+          <ScalarProperty Name="volume" ColumnName="volume" />
+          <ScalarProperty Name="history_ORDER" ColumnName="history_ORDER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="stocks">
+      <EntityTypeMapping TypeName="stocksModel.stock">
+        <MappingFragment StoreEntitySet="stocklist">
+          <ScalarProperty Name="stock_id" ColumnName="stock_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="ticker" ColumnName="ticker" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

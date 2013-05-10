@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="stocksModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="stocksModelStoreContainer">
+          <EntitySet Name="stockdata" EntityType="stocksModel.Store.stockdata" store:Type="Tables" Schema="stocks" />
+          <EntitySet Name="stocklist" EntityType="stocksModel.Store.stocklist" store:Type="Tables" Schema="stocks" />
+          <AssociationSet Name="FK4B9C6BC03F7C8B7F" Association="stocksModel.Store.FK4B9C6BC03F7C8B7F">
+            <End Role="stocklist" EntitySet="stocklist" />
+            <End Role="stockdata" EntitySet="stockdata" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="stockdata">
+          <Key>
+            <PropertyRef Name="stock_id" />
+            <PropertyRef Name="history_ORDER" />
+          </Key>
+          <Property Name="stock_id" Type="int" Nullable="false" />
+          <Property Name="adjClose" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="close" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="date" Type="date" />
+          <Property Name="high" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="low" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="open" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="volume" Type="bigint" />
+          <Property Name="history_ORDER" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="stocklist">
+          <Key>
+            <PropertyRef Name="stock_id" />
+          </Key>
+          <Property Name="stock_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="ticker" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK4B9C6BC03F7C8B7F">
+          <End Role="stocklist" Type="stocksModel.Store.stocklist" Multiplicity="1" />
+          <End Role="stockdata" Type="stocksModel.Store.stockdata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stocklist">
+              <PropertyRef Name="stock_id" />
+            </Principal>
+            <Dependent Role="stockdata">
+              <PropertyRef Name="stock_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="stocksModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="stocksEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="stockdatas" EntityType="stocksModel.stockdata" />
+          <EntitySet Name="stocks" EntityType="stocksModel.stock" />
+          <AssociationSet Name="FK4B9C6BC03F7C8B7F" Association="stocksModel.FK4B9C6BC03F7C8B7F">
+            <End Role="stocklist" EntitySet="stocks" />
+            <End Role="stockdata" EntitySet="stockdatas" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="stockdata">
+          <Key>
+            <PropertyRef Name="stock_id" />
+            <PropertyRef Name="history_ORDER" />
+          </Key>
+          <Property Name="stock_id" Type="Int32" Nullable="false" />
+          <Property Name="adjClose" Type="Decimal" />
+          <Property Name="close" Type="Decimal" />
+          <Property Name="date" Type="DateTime" />
+          <Property Name="high" Type="Decimal" />
+          <Property Name="low" Type="Decimal" />
+          <Property Name="open" Type="Decimal" />
+          <Property Name="volume" Type="Int64" />
+          <Property Name="history_ORDER" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="stock" Relationship="stocksModel.FK4B9C6BC03F7C8B7F" FromRole="stockdata" ToRole="stocklist" />
+        </EntityType>
+        <EntityType Name="stock">
+          <Key>
+            <PropertyRef Name="stock_id" />
+          </Key>
+          <Property Name="stock_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="ticker" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="stockdatas" Relationship="stocksModel.FK4B9C6BC03F7C8B7F" FromRole="stocklist" ToRole="stockdata" />
+        </EntityType>
+        <Association Name="FK4B9C6BC03F7C8B7F">
+          <End Role="stocklist" Type="stocksModel.stock" Multiplicity="1" />
+          <End Role="stockdata" Type="stocksModel.stockdata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stocklist">
+              <PropertyRef Name="stock_id" />
+            </Principal>
+            <Dependent Role="stockdata">
+              <PropertyRef Name="stock_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="stocksModelStoreContainer" CdmEntityContainer="stocksEntities">
+          <EntitySetMapping Name="stockdatas">
+            <EntityTypeMapping TypeName="stocksModel.stockdata">
+              <MappingFragment StoreEntitySet="stockdata">
+                <ScalarProperty Name="stock_id" ColumnName="stock_id" />
+                <ScalarProperty Name="adjClose" ColumnName="adjClose" />
+                <ScalarProperty Name="close" ColumnName="close" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="high" ColumnName="high" />
+                <ScalarProperty Name="low" ColumnName="low" />
+                <ScalarProperty Name="open" ColumnName="open" />
+                <ScalarProperty Name="volume" ColumnName="volume" />
+                <ScalarProperty Name="history_ORDER" ColumnName="history_ORDER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stocks">
+            <EntityTypeMapping TypeName="stocksModel.stock">
+              <MappingFragment StoreEntitySet="stocklist">
+                <ScalarProperty Name="stock_id" ColumnName="stock_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="ticker" ColumnName="ticker" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="stocksModel.stockdata" Width="1.5" PointX="4.875" PointY="1.125" Height="2.9417936197916665" IsExpanded="true" />
+        <EntityTypeShape EntityType="stocksModel.stock" Width="1.5" PointX="2" PointY="1.5" Height="1.7879850260416674" IsExpanded="true" />
+        <AssociationConnector Association="stocksModel.FK4B9C6BC03F7C8B7F" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.5" PointY="2.3939925130208337" />
+          <ConnectorPoint PointX="4.875" PointY="2.3939925130208337" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

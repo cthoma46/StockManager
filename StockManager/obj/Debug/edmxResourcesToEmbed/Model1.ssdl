@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="stocksModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="stocksModelStoreContainer">
+    <EntitySet Name="stockdata" EntityType="stocksModel.Store.stockdata" store:Type="Tables" Schema="stocks" />
+    <EntitySet Name="stocklist" EntityType="stocksModel.Store.stocklist" store:Type="Tables" Schema="stocks" />
+    <AssociationSet Name="FK4B9C6BC03F7C8B7F" Association="stocksModel.Store.FK4B9C6BC03F7C8B7F">
+      <End Role="stocklist" EntitySet="stocklist" />
+      <End Role="stockdata" EntitySet="stockdata" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="stockdata">
+    <Key>
+      <PropertyRef Name="stock_id" />
+      <PropertyRef Name="history_ORDER" />
+    </Key>
+    <Property Name="stock_id" Type="int" Nullable="false" />
+    <Property Name="adjClose" Type="decimal" Precision="19" Scale="2" />
+    <Property Name="close" Type="decimal" Precision="19" Scale="2" />
+    <Property Name="date" Type="date" />
+    <Property Name="high" Type="decimal" Precision="19" Scale="2" />
+    <Property Name="low" Type="decimal" Precision="19" Scale="2" />
+    <Property Name="open" Type="decimal" Precision="19" Scale="2" />
+    <Property Name="volume" Type="bigint" />
+    <Property Name="history_ORDER" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="stocklist">
+    <Key>
+      <PropertyRef Name="stock_id" />
+    </Key>
+    <Property Name="stock_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="varchar" MaxLength="255" />
+    <Property Name="ticker" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <Association Name="FK4B9C6BC03F7C8B7F">
+    <End Role="stocklist" Type="stocksModel.Store.stocklist" Multiplicity="1" />
+    <End Role="stockdata" Type="stocksModel.Store.stockdata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="stocklist">
+        <PropertyRef Name="stock_id" />
+      </Principal>
+      <Dependent Role="stockdata">
+        <PropertyRef Name="stock_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

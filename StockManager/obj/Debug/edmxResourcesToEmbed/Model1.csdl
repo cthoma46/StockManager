@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="stocksModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="stocksEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="stockdatas" EntityType="stocksModel.stockdata" />
+    <EntitySet Name="stocks" EntityType="stocksModel.stock" />
+    <AssociationSet Name="FK4B9C6BC03F7C8B7F" Association="stocksModel.FK4B9C6BC03F7C8B7F">
+      <End Role="stocklist" EntitySet="stocks" />
+      <End Role="stockdata" EntitySet="stockdatas" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="stockdata">
+    <Key>
+      <PropertyRef Name="stock_id" />
+      <PropertyRef Name="history_ORDER" />
+    </Key>
+    <Property Name="stock_id" Type="Int32" Nullable="false" />
+    <Property Name="adjClose" Type="Decimal" />
+    <Property Name="close" Type="Decimal" />
+    <Property Name="date" Type="DateTime" />
+    <Property Name="high" Type="Decimal" />
+    <Property Name="low" Type="Decimal" />
+    <Property Name="open" Type="Decimal" />
+    <Property Name="volume" Type="Int64" />
+    <Property Name="history_ORDER" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="stock" Relationship="stocksModel.FK4B9C6BC03F7C8B7F" FromRole="stockdata" ToRole="stocklist" />
+  </EntityType>
+  <EntityType Name="stock">
+    <Key>
+      <PropertyRef Name="stock_id" />
+    </Key>
+    <Property Name="stock_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="ticker" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="stockdatas" Relationship="stocksModel.FK4B9C6BC03F7C8B7F" FromRole="stocklist" ToRole="stockdata" />
+  </EntityType>
+  <Association Name="FK4B9C6BC03F7C8B7F">
+    <End Role="stocklist" Type="stocksModel.stock" Multiplicity="1" />
+    <End Role="stockdata" Type="stocksModel.stockdata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="stocklist">
+        <PropertyRef Name="stock_id" />
+      </Principal>
+      <Dependent Role="stockdata">
+        <PropertyRef Name="stock_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
